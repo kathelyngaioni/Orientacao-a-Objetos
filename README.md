@@ -1,2 +1,0 @@
-# Orientacao-a-objetos
-PHP
