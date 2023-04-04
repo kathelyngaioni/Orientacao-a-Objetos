@@ -1,16 +1,29 @@
 <?php
 
+//Membros estáticos são membros de uma classe em si e não de uma instância
+//da classe.
+
 class Conta
 {
     private string $cpfTitular;
     private string $nomeTitular;
-    private float $saldo = 0;
+    private float $saldo;
+    private static $numeroDeContas = 0;
 
     public function __construct (string $cpfTitular, string $nomeTitular) {
      $this->cpfTitular = $cpfTitular;
      $this->nomeTitular = $nomeTitular;
+     $this->saldo = 0;
+     //self::$numeroDeContas++;
+     Conta::$numeroDeContas++; //static
     }
 
+    public static function numeroContas() : int
+    {
+      //outra opção
+      //return self::$numeroDeContas;
+      return Conta::$numeroDeContas;
+    }
     public function saca(float $valorASacar): void
     {
         if ($valorASacar > $this->saldo) {
