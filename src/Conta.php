@@ -18,12 +18,15 @@ class Conta
      Conta::$numeroDeContas++; //static
     }
 
+    public function __destruct(){}
+  
     public static function numeroContas() : int
     {
       //outra opção
       //return self::$numeroDeContas;
       return Conta::$numeroDeContas;
     }
+  
     public function saca(float $valorASacar): void
     {
         if ($valorASacar > $this->saldo) {
