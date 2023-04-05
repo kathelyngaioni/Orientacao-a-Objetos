@@ -1,19 +1,20 @@
 <?php
 
+ require_once 'Titular.php';
 //Membros estáticos são membros de uma classe em si e não de uma instância
 //da classe.
 
 class Conta
 {
-    private string $cpfTitular;
-    private string $nomeTitular;
-    private float $saldo;
+    //composição de objetos
+    private Titular $titular;
+    private float $saldo = 0;
     private static $numeroDeContas = 0;
 
-    public function __construct (string $cpfTitular, string $nomeTitular) {
-     $this->cpfTitular = $cpfTitular;
-     $this->nomeTitular = $nomeTitular;
-     $this->saldo = 0;
+    public function __construct (Titular $titular)
+    {
+      $this->titular = $titular;
+      
      //self::$numeroDeContas++;
      Conta::$numeroDeContas++; //static
     }
@@ -63,14 +64,14 @@ class Conta
         return $this->saldo;
     }
 
-
-    public function recuperaCpfTitular(): string
-    {
-        return $this->cpfTitular;
-    }
-
-    public function recuperaNomeTitular(): string
-    {
-        return $this->nomeTitular;
-    }
+  //titular
+  public function recuperaNomeTitular()
+  {
+    return $this->titular->recuperaNome();
+  }
+  
+  public function recuperaCpfTitular()
+  {
+    return $this->titular->recuperaCpf();
+  }
 }
